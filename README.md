@@ -20,6 +20,9 @@ return mods
 
 -- in your binds.lua file (or hyprland.lua, or wherever you define your binds) 
 
+functions = require("hyprlua.functions")
+mods = require("binds/mods")
+
 hl.bind(mods.mod2 .. " + KP_End",  functions.dps.toggle('decoration', 'blur'))
 hl.bind(mods.mod2 .. " + KP_Down", functions.dps.toggle('decoration', 'shadow'))
 hl.bind(mods.mod2 .. " + KP_Next", functions.dps.toggle('decoration', 'glow'))
@@ -36,3 +39,8 @@ hl.bind(mods.mod1 .. " + Z", functions.zoom_next)
 hl.bind(mods.mod1 .. " + KP_Add",      functions.resize_window(.1),  { repeating = true })
 hl.bind(mods.mod1 .. " + KP_Subtract", functions.resize_window(-.1), { repeating = true })
 ```
+
+## TODO
+
+- Stuff in `monitors` and `solaar` have hard-coded values specific to my hardware. I'll make it configurable in the future.
+- `functions` is a terrible name. 
