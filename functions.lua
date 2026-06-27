@@ -1,4 +1,4 @@
-local functions = {}
+local functions = { dps = {}}
 
 function functions.next_window_in_ws()
   local ws = hl.get_active_workspace()
@@ -123,6 +123,31 @@ function functions.zoom_next()
       zoom_factor = next_zoom[value] or 1,
     },
   })
+end
+
+function functions.toggle(category, option)
+  local key = category .. "." .. option .. ".enabled"
+  local new_value = not hl.get_config(key)
+
+  hl.config({
+      [category] = {
+          [option] = {
+              enabled = new_value
+          }
+      }
+  })
+
+  hl.notification.create({
+    text = option .. " " .. (new_value and "on" or "off"),
+    timeout = 3000,
+    --icon = new_value and "ok" or "warning",
+  })
+end
+
+function functions.dps.toggle(category, option)
+  return function()
+    functions.toggle(category, option)
+  end
 end
 
 return functions
